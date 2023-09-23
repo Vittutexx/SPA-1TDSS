@@ -1,57 +1,39 @@
 import { Link } from "react-router-dom"
-import { ListaProdutos } from "../components/ListaProdutos"
 import  styles from "./Produtos.module.css";
 import {AiFillEdit as Editar} from "react-icons/ai";
 import {MdDeleteForever as Excluir} from "react-icons/md";
-import { BiMessageAltAdd as Adicionar } from "react-icons/bi"
 import { useEffect, useState } from "react";
+import ModalInserir from "../Components/ModalInserir/ModalInserir";
 
 export default function Produtos() {
 
   document.title = "Lista de Produtos";
 
-  const [counter, setCounter] = useState(0);
-  
-  const [counter2, setCounter2] = useState(0);
-
-  
-  useEffect(() => {  
-    
-    console.log("useEffect será renderizado sempre que o componente ou qualquer objeto for atualizado!");
-});
-
-
+  const [produtos, setProdutos] = useState([{}]);
 
   useEffect(() => {
     console.log("useEffect será rendereizado apenas uma vez!");
-},[]);
+    fetch("http://localhost:5000/produtos",{
+      method: "GET",
+      headers:{
+        "Content-Type": "application/json"
+      }
+      })
+      .then((response)=> response.json())
+      .then((listaProdutos)=>{
+          setProdutos(listaProdutos);
+      })
+  
+  },[]);
 
-  const [produtos, setProdutos] = useState([{}]);
-
-
-useEffect(() => {
-  console.log("useEffect será rendereizado apenas uma objeto variável constante que estiver no array de dependências sofrer uma atualização.!");
-  fetch("http://localhost:5000/produtos")
-  .then((lista) => lista.json())
-  .then((listProdutos) => {
-      setProdutos(listProdutos);
-  })  
-
-
-},[counter2]);
-
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
         <h1>Produtos</h1>
 
-        <div>
-          <button onClick={() => setCounter(counter + 1)}>COUNTER - {counter}</button>
-        </div>
-
-        <div>
-          <button onClick={() => setCounter2(counter2 + 1)}>COUNTER2 - {counter2}</button>
-        </div>
+       {open ? <ModalInserir open={open} setOpen={setOpen} /> : "" }
+       <button onClick={()=> setOpen(true)}>OPEN - MODAL</button>
 
         <table className={styles.table}>
             <thead>
@@ -64,17 +46,17 @@ useEffect(() => {
             </thead>
             <tbody>
             {produtos.map((produto,indice)=>(
-                 <tr key={indice} className={styles.tableRow}>
-                    <td className={styles.tableData}>{produto.id}</td>
-                    <td className={styles.tableData}>{produto.nome}</td>
-                    <td className={styles.tableData}>{produto.preco}</td>
-                    <td className={styles.tableData}><Link to={`/editar/produtos/${produto.id}`}> <Editar/> </Link> | <Link to={`/excluir/produtos/${produto.id}`}> <Excluir/> </Link></td>
+                 <tr key={indice}>
+                    <td>{produto.id}</td>
+                    <td>{produto.nome}</td>
+                    <td>{produto.preco}</td>
+                    <td><Link to={`/editar/produtos/${produto.id}`}> <Editar/> </Link> | <Link to={`/excluir/produtos/${produto.id}`}> <Excluir/> </Link></td>
                  </tr>
             ))}
         </tbody>
         <tfoot>
-        <tr className={styles.tableRow}>
-           <td className={styles.tableData} colSpan={4} style={{textAlign:"center"}}>PRODUTOS - INSERIR <Link to= {`/adicionar/produtos`}><Adicionar/></Link></td>
+        <tr>
+           <td colSpan={4} style={{textAlign:"center"}}>PRODUTOS</td>
         </tr>
         </tfoot>
         </table>
