@@ -1,8 +1,44 @@
 {
-    "produtos":[
-        {"id":1, "nome":"Teclado", "preco": 150},
-        {"id":2, "nome":"Mouse", "preco": 120},
-        {"id":3, "nome":"Monitor", "preco": 950}
-    ]
-
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Teclado",
+      "preco": 150
+    },
+    {
+      "id": 2,
+      "nome": "Mouse",
+      "preco": 120
+    },
+    {
+      "id": 3,
+      "nome": "Monitor",
+      "preco": 950
+    },
+    {
+      "nome": "fsdfsdfsdfsd",
+      "preco": "13564",
+      "id": 4
+    },
+    {
+      "nome": "Cubo quadruADO",
+      "preco": "",
+      "id": 5
+    },
+    {
+      "nome": "Cubo quadrado",
+      "preco": "123",
+      "id": 6
+    },
+    {
+      "nome": "",
+      "preco": "",
+      "id": 7
+    },
+    {
+      "nome": "",
+      "preco": "",
+      "id": 8
+    }
+  ]
 }
