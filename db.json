@@ -19,6 +19,16 @@
       "nome": "fsdfsdfsdfsd",
       "preco": "13564",
       "id": 4
+    },
+    {
+      "nome": "Cubo quadruADO",
+      "preco": "",
+      "id": 5
+    },
+    {
+      "nome": "Cubo quadrado",
+      "preco": "123",
+      "id": 6
     }
   ]
 }
