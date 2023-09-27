@@ -29,6 +29,16 @@
       "nome": "Cubo quadrado",
       "preco": "123",
       "id": 6
+    },
+    {
+      "nome": "",
+      "preco": "",
+      "id": 7
+    },
+    {
+      "nome": "",
+      "preco": "",
+      "id": 8
     }
   ]
 }
